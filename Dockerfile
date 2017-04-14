@@ -15,7 +15,7 @@ RUN apt-get update \
         python3-dev \
         python3-pip \
         python3-mock \
-    && pip install ipython \
+    && pip3 install ipython \
     && apt-get autoremove \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
