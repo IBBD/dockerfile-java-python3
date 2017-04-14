@@ -5,14 +5,17 @@
 
 FROM java:8
 
-MAINTAINER Alex Cai cyy0523xc@gmail.com
+MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 
 RUN apt-get update \
-    && apt-get install apt-utils g++ python3 python-dev python-pip python-mock -y \
+    && apt-get install -y --no-install-recommends \
+        apt-utils \
+        g++ \
+        python3.5 \
+        python3-dev \
+        python3-pip \
+        python3-mock \
     && pip install ipython \
-    && pip install flask \
-    && pip install flask_restful \
-    && pip install pyyaml \
     && apt-get autoremove \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
@@ -26,9 +29,16 @@ RUN cd ~/ \
     && rm JPype1-0.6.2.tar.gz \
     && rm -r JPype1-0.6.2
 
+# 工作目录
 RUN mkdir /var/www
-
 WORKDIR /var/www
+
+# 解决时区问题
+ENV TZ "Asia/Shanghai"
+
+# 终端设置
+# 执行php-fpm时，默认值是dumb，这时在终端操作时可能会出现：terminal is not fully functional
+ENV TERM xterm
 
 # 解决时区问题
 ENV TZ "Asia/Shanghai"
