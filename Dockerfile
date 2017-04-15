@@ -7,7 +7,7 @@ FROM java:8
 
 MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 
-        #python3-mock \
+#python3-mock \
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         apt-utils \
@@ -19,8 +19,8 @@ RUN apt-get update \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
+##&& pip3 install ipython \
 RUN cd ~/ \
-    && pip3 install ipython \
     && wget https://pypi.python.org/packages/59/90/149647ac2c8649a5983fcc47c78f2881af80cbd99f54248ac31b3d611618/JPype1-py3-0.5.5.2.tar.gz#md5=06481b851244abb37d45f3a03f0f0455 \
     && tar -xvzf JPype1-py3-0.5.5.2.tar.gz \
     && cd JPype1-0.5.5.2 \
