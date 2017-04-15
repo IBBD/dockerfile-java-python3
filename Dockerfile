@@ -23,11 +23,11 @@ RUN apt-get update \
 RUN cd ~/ \
     && wget https://pypi.python.org/packages/59/90/149647ac2c8649a5983fcc47c78f2881af80cbd99f54248ac31b3d611618/JPype1-py3-0.5.5.2.tar.gz#md5=06481b851244abb37d45f3a03f0f0455 \
     && tar -xvzf JPype1-py3-0.5.5.2.tar.gz \
-    && cd JPype1-0.5.5.2 \
+    && cd JPype1-py3-0.5.5.2 \
     && python3 setup.py install \
     && cd ~ \
-    && rm JPype1-0.5.5.2.tar.gz \
-    && rm -r JPype1-0.5.5.2
+    && rm JPype1-py3-0.5.5.2.tar.gz \
+    && rm -r JPype1-py3-0.5.5.2
 
 # 工作目录
 RUN mkdir /var/www
