@@ -1,4 +1,4 @@
-# 
+# docker pull ibbd/java-python3
 # Author: Alex
 # Version: 2017-04-14
 # 
@@ -37,7 +37,7 @@ WORKDIR /var/www
 ENV TZ "Asia/Shanghai"
 
 # 终端设置
-# 执行php-fpm时，默认值是dumb，这时在终端操作时可能会出现：terminal is not fully functional
+# 默认值是dumb，这时在终端操作时可能会出现：terminal is not fully functional
 ENV TERM xterm
 
 # 解决时区问题
