@@ -7,13 +7,8 @@ FROM java:8
 
 MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 
-# 默认安装的是py3.4，需要增加相应的源，才能装上3.5
+# TODO 默认安装的是py3.4，需要增加相应的源，才能装上3.5
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        software-properties-common \
-        python-software-properties \
-    && add-apt-repository ppa:fkrull/deadsnakes -y \
-    && apt-get update \
     && apt-get install -y --no-install-recommends \
         apt-utils \
         g++ \
@@ -21,9 +16,6 @@ RUN apt-get update \
         python3-dev \
         python3-pip \
     && apt-get upgrade -y \
-    && apt-get remove -y \
-        software-properties-common \
-        python-software-properties \
     && apt-get autoremove \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
