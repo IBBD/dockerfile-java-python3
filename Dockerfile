@@ -29,6 +29,9 @@ RUN cd ~/ \
     && rm JPype1-py3-0.5.5.2.tar.gz \
     && rm -r JPype1-py3-0.5.5.2
 
+# install ipython
+RUN pip3 install ipython
+
 # 工作目录
 RUN mkdir /var/www
 WORKDIR /var/www
