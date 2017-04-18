@@ -30,7 +30,10 @@ RUN cd ~/ \
     && rm -r JPype1-py3-0.5.5.2
 
 # install ipython
-RUN pip3 install ipython
+RUN \
+    pip3 install -U pip \
+        setuptools \
+    && pip3 install ipython
 
 # 工作目录
 RUN mkdir /var/www
