@@ -8,8 +8,7 @@ FROM ibbd/java-python3
 MAINTAINER Alex Cai cyy0523xc@gmail.com
 
 RUN \
-    pip3 install flask \
+    pip install flask \
         flask_restful \
-        pyyaml \
-        ipython
+        pyyaml
 
