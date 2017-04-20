@@ -10,6 +10,8 @@ FROM ibbd/java-python3-server
 MAINTAINER Alex Cai cyy0523xc@gmail.com
 
 RUN \
-    pip install cython \
+    apt-get update \
+    && apt-get install build-essential \
+    && pip install cython \
     && pip3 install cython \
 
