@@ -33,7 +33,7 @@ RUN cd ~/ \
 RUN \
     pip3 install -U pip \
         setuptools \
-    && pip install ipython
+    && pip3 install ipython
 
 # 工作目录
 RUN mkdir /var/www
