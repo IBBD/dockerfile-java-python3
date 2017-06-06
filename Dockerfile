@@ -12,7 +12,9 @@ MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 # 安装gcc，make和zlib压缩/解压缩库
 RUN  apt-get update \
      && apt-get install -y --no-install-recommends \
-     gcc make zlib1g-dev openssl 
+     gcc make zlib1g-dev  \
+     libffi-dev libssl-dev  \
+     python3-dev  
 
 ENV PYTHON_V 3.6.1
 
@@ -20,7 +22,10 @@ RUN  \
     wget https://www.python.org/ftp/python/$PYTHON_V/Python-$PYTHON_V.tar.xz \
     && tar xJf Python-$PYTHON_V.tar.xz  \
     && cd Python-$PYTHON_V \
-    && ./configure  \
+    &&  sed -i 's/#SSL=/SSL=/g' Modules/Setup.dist \
+    &&  sed -i 's/#zlib/zlib/g' Modules/Setup.dist \
+    &&  echo  "_ssl _ssl.c -DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl  -L$(SSL)/lib -lssl -lcrypto " >> Modules/Setup.dist 
+    && ./configure  --enable-optimizations \
     &&  make && make install \
     &&  cd .. \
     &&  rm  Python-$PYTHON_V.tar.xz -f \
@@ -29,8 +34,7 @@ RUN  \
 RUN  \
     apt-get install -y --no-install-recommends \
         apt-utils \
-        g++ \        
-        python3-dev \
+        g++ \         
         python3-pip \
     && apt-get upgrade -y \
     && apt-get autoremove \
@@ -47,17 +51,18 @@ RUN cd ~/ \
     && rm -r JPype1-py3-0.5.5.2
 
 # install ipython
-RUN wget https://pypi.python.org/packages/75/03/bb1ce0cf9f8a86f52b34090708e1806bc11e2d29b193e7d6fe0afe9a61e5/ipython-6.0.0.tar.gz#md5=4169cfe24253c342d7a0b966f5c76281 \
-    && tar -zxvf ipython-6.0.0.tar.gz \
-    && cd ipython-6.0.0  \
-    && python3 setup.py install \
-    && cd .. \
-    && rm -rf ipython-6.0.0
+# RUN wget https://pypi.python.org/packages/75/03/bb1ce0cf9f8a86f52b34090708e1806bc11e2d29b193e7d6fe0afe9a61e5/ipython-6.0.0.tar.gz#md5=4169cfe24253c342d7a0b966f5c76281 \
+#     && tar -zxvf ipython-6.0.0.tar.gz \
+#     && cd ipython-6.0.0  \
+#     && python3 setup.py install \
+#     && cd .. \
+#     && rm -rf ipython-6.0.0
 
 # install ipython 依赖
 RUN \
     pip3 install -U pip \
         setuptools 
+    && pip3 install ipython
     # &&  pip3 install traitlets pygments \
     #                  pexpect pickleshare \
     #                   prompt_toolkit simplegeneric
