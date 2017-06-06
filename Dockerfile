@@ -24,7 +24,7 @@ RUN  \
     && cd Python-$PYTHON_V \
     &&  sed -i 's/#SSL=/SSL=/g' Modules/Setup.dist \
     &&  sed -i 's/#zlib/zlib/g' Modules/Setup.dist \
-    &&  echo  "_ssl _ssl.c -DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl  -L$(SSL)/lib -lssl -lcrypto " >> Modules/Setup.dist 
+    &&  echo  "_ssl _ssl.c -DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl  -L$(SSL)/lib -lssl -lcrypto " >> Modules/Setup.dist \
     && ./configure  --enable-optimizations \
     &&  make && make install \
     &&  cd .. \
