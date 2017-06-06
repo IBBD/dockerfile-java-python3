@@ -12,6 +12,5 @@ MAINTAINER Alex Cai cyy0523xc@gmail.com
 RUN \
     apt-get update \
     && apt-get install -y build-essential \
-    && pip install cython \
     && pip3 install cython \
 
