@@ -19,12 +19,12 @@ ENV PYTHON_V 3.6.1
 RUN  \
     wget https://www.python.org/ftp/python/$PYTHON_V/Python-$PYTHON_V.tar.xz \
     && tar xJf Python-$PYTHON_V.tar.xz  \
-    && cd $PYTHON_V \
+    && cd Python-$PYTHON_V \
     && ./configure  \
     &&  make && make install \
     &&  cd .. \
     &&  rm  Python-$PYTHON_V.tar.xz -f \
-    &&  rm  -rf $PYTHON_V 
+    &&  rm  -rf Python-$PYTHON_V 
 
 RUN  \
     apt-get install -y --no-install-recommends \
