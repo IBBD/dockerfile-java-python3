@@ -8,11 +8,28 @@ FROM java:8
 MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 
 # TODO 默认安装的是py3.4，需要增加相应的源，才能装上3.5
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+
+# 安装gcc，make和zlib压缩/解压缩库
+RUN  apt-get update \
+     && apt-get install -y --no-install-recommends \
+     gcc make zlib1g-dev 
+
+ENV PYTHON_V 3.6.1
+
+RUN  \
+    wget https://www.python.org/ftp/python/$PYTHON_V/Python-$PYTHON_V.tar.xz \
+    && tar xJf Python-$PYTHON_V.tar.xz  \
+    && cd $PYTHON_V \
+    && ./configure  \
+    &&  make && make install \
+    &&  cd .. \
+    &&  rm  Python-$PYTHON_V.tar.xz -f \
+    &&  rm  -rf $PYTHON_V 
+
+RUN  \
+    apt-get install -y --no-install-recommends \
         apt-utils \
-        g++ \
-        python3 \
+        g++ \        
         python3-dev \
         python3-pip \
     && apt-get upgrade -y \
