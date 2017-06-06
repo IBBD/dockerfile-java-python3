@@ -12,7 +12,7 @@ MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 # 安装gcc，make和zlib压缩/解压缩库
 RUN  apt-get update \
      && apt-get install -y --no-install-recommends \
-     gcc make zlib1g-dev openssl openssl-devel
+     gcc make zlib1g-dev openssl 
 
 ENV PYTHON_V 3.6.1
 
