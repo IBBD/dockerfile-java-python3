@@ -61,7 +61,7 @@ RUN cd ~/ \
 # install ipython 依赖
 RUN \
     pip3 install -U pip \
-        setuptools 
+        setuptools \
     && pip3 install ipython
     # &&  pip3 install traitlets pygments \
     #                  pexpect pickleshare \
