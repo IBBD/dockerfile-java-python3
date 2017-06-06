@@ -47,11 +47,20 @@ RUN cd ~/ \
     && rm -r JPype1-py3-0.5.5.2
 
 # install ipython
+RUN wget https://pypi.python.org/packages/75/03/bb1ce0cf9f8a86f52b34090708e1806bc11e2d29b193e7d6fe0afe9a61e5/ipython-6.0.0.tar.gz#md5=4169cfe24253c342d7a0b966f5c76281 \
+    && tar -zxvf ipython-6.0.0.tar.gz \
+    && cd ipython-6.0.0  \
+    && python3 setup.py install \
+    && cd .. \
+    && rm -rf ipython-6.0.0
+
+# install ipython 依赖
 RUN \
     pip3 install -U pip \
         setuptools \
-    && pip3 install ipython
-
+    &&  pip3 install traitlets pygments \
+                     pexpect pickleshare \
+                      prompt_toolkit simplegeneric
 # 工作目录
 RUN mkdir /var/www
 WORKDIR /var/www
