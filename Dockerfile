@@ -57,10 +57,10 @@ RUN wget https://pypi.python.org/packages/75/03/bb1ce0cf9f8a86f52b34090708e1806b
 # install ipython 依赖
 RUN \
     pip3 install -U pip \
-        setuptools \
-    &&  pip3 install traitlets pygments \
-                     pexpect pickleshare \
-                      prompt_toolkit simplegeneric
+        setuptools 
+    # &&  pip3 install traitlets pygments \
+    #                  pexpect pickleshare \
+    #                   prompt_toolkit simplegeneric
 # 工作目录
 RUN mkdir /var/www
 WORKDIR /var/www
