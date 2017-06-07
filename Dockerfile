@@ -7,13 +7,13 @@ FROM java:8
 
 MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 
-# TODO 默认安装的是py3.4，需要增加相应的源，才能装上3.5
+#  3.6.1
 
-# 安装gcc，make和zlib压缩/解压缩库
+# 安装gcc，make和zlib压缩/解压缩库,bz2依赖库
 RUN  apt-get update \
      && apt-get install -y --no-install-recommends \
      gcc make zlib1g-dev  \
-     libffi-dev libssl-dev  \
+     libffi-dev libssl-dev libbz2-dev  \
      python3-dev  
 
 ENV PYTHON_V 3.6.1
@@ -51,21 +51,11 @@ RUN cd ~/ \
     && rm -r JPype1-py3-0.5.5.2
 
 # install ipython
-# RUN wget https://pypi.python.org/packages/75/03/bb1ce0cf9f8a86f52b34090708e1806bc11e2d29b193e7d6fe0afe9a61e5/ipython-6.0.0.tar.gz#md5=4169cfe24253c342d7a0b966f5c76281 \
-#     && tar -zxvf ipython-6.0.0.tar.gz \
-#     && cd ipython-6.0.0  \
-#     && python3 setup.py install \
-#     && cd .. \
-#     && rm -rf ipython-6.0.0
-
-# install ipython 依赖
 RUN \
     pip3 install -U pip \
         setuptools \
     && pip3 install ipython
-    # &&  pip3 install traitlets pygments \
-    #                  pexpect pickleshare \
-    #                   prompt_toolkit simplegeneric
+  
 # 工作目录
 RUN mkdir /var/www
 WORKDIR /var/www
