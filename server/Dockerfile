@@ -11,5 +11,7 @@ RUN \
     pip3 install -U flask \
         flask_restful \
         flask-cors \
-        pyyaml
+        pyyaml \
+        chardet \
+        jieba
 
