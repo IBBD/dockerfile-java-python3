@@ -6,4 +6,11 @@ docker pull ibbd/java-python3
 docker pull ibbd/java-python3-server
 ```
 
+## 升级日志
+
+### 20170802
+
+- python升级到3.6.2
+- pypel升级到0.6.2
+
 

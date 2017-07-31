@@ -11,13 +11,13 @@ MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 
 # 安装gcc，make和zlib压缩/解压缩库,bz2依赖库
 RUN  apt-get update \
-     && apt-get install -y --no-install-recommends \
-     gcc make zlib1g-dev  \
-     libffi-dev libssl-dev libbz2-dev  \
-     python3-dev  
+    && apt-get install -y --no-install-recommends \
+        gcc make zlib1g-dev  \
+        libffi-dev libssl-dev libbz2-dev  \
+        python3-dev  
 
-ENV PYTHON_V 3.6.1
-
+# python3安装
+ENV PYTHON_V 3.6.2
 RUN  \
     wget https://www.python.org/ftp/python/$PYTHON_V/Python-$PYTHON_V.tar.xz \
     && tar xJf Python-$PYTHON_V.tar.xz  \
@@ -41,14 +41,25 @@ RUN  \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
+# Pypel安装
+# https://pypi.python.org/packages/d2/c2/cda0e4ae97037ace419704b4ebb7584ed73ef420137ff2b79c64e1682c43/JPype1-0.6.2.tar.gz
+ENV PYPEL_V 0.6.2
 RUN cd ~/ \
-    && wget https://pypi.python.org/packages/59/90/149647ac2c8649a5983fcc47c78f2881af80cbd99f54248ac31b3d611618/JPype1-py3-0.5.5.2.tar.gz#md5=06481b851244abb37d45f3a03f0f0455 \
-    && tar -xvzf JPype1-py3-0.5.5.2.tar.gz \
-    && cd JPype1-py3-0.5.5.2 \
+    && wget https://pypi.python.org/packages/d2/c2/cda0e4ae97037ace419704b4ebb7584ed73ef420137ff2b79c64e1682c43/JPype1-$PYPEL_V.tar.gz \
+    && tar -xvzf JPype1-$PYPEL_V.tar.gz \
+    && cd JPype1-$PYPEL_V \
     && python3 setup.py install \
     && cd ~ \
-    && rm JPype1-py3-0.5.5.2.tar.gz \
-    && rm -r JPype1-py3-0.5.5.2
+    && rm JPype1-$PYPEL_V.tar.gz \
+    && rm -r JPype1-$PYPEL_V
+#RUN cd ~/ \
+    #&& wget https://pypi.python.org/packages/59/90/149647ac2c8649a5983fcc47c78f2881af80cbd99f54248ac31b3d611618/JPype1-py3-0.5.5.2.tar.gz#md5=06481b851244abb37d45f3a03f0f0455 \
+    #&& tar -xvzf JPype1-py3-0.5.5.2.tar.gz \
+    #&& cd JPype1-py3-0.5.5.2 \
+    #&& python3 setup.py install \
+    #&& cd ~ \
+    #&& rm JPype1-py3-0.5.5.2.tar.gz \
+    #&& rm -r JPype1-py3-0.5.5.2
 
 # install ipython
 RUN \
