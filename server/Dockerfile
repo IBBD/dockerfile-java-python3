@@ -13,5 +13,6 @@ RUN \
         flask-cors \
         pyyaml \
         chardet \
-        jieba
+        jieba \
+        gunicorn
 
