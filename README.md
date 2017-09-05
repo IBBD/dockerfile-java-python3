@@ -7,6 +7,9 @@ docker pull ibbd/java-python3-server
 ```
 
 ## 升级日志
+### 20170905
+
+- 增加：numpy, pandas, nltk
 
 ### 20170802
 

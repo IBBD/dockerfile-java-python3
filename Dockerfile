@@ -65,7 +65,10 @@ RUN cd ~/ \
 RUN \
     pip3 install -U pip \
         setuptools \
-    && pip3 install ipython
+    && pip3 install ipython \
+        numpy \
+        pandas \
+        nltk
   
 # 工作目录
 RUN mkdir /var/www
