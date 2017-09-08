@@ -68,6 +68,7 @@ RUN \
     && pip3 install ipython \
         numpy \
         pandas \
+        scipy \
         nltk
   
 # 工作目录
