@@ -69,7 +69,8 @@ RUN \
         numpy \
         pandas \
         scipy \
-        nltk
+        nltk \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
   
 # 工作目录
 RUN mkdir /var/www
