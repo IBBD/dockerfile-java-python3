@@ -15,9 +15,10 @@ MAINTAINER Alex Cai "cyy0523xc@gmail.com"
     #&& add-apt-repository ppa:jonathonf/python-3.6 \
     #&& apt-get update -y \
         #python3.6 \
-# Jpype安装依赖：g++, python3-dev, python3-setuptools
+# Jpype安装依赖：g++, python3-dev, python3-setuptools, gcc
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
+        gcc \
         python3-dev \
         wget \
         apt-utils \
@@ -49,7 +50,6 @@ RUN \
         numpy \
         pandas \
         scipy \
-        nltk \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && mkdir /var/www
   
