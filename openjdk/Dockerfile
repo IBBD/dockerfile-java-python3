@@ -8,40 +8,31 @@ FROM openjdk:8-slim
 MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 
 # 安装gcc，make和zlib压缩/解压缩库,bz2依赖库
-RUN  apt-get update \
+# python3安装依赖：software-properties-common, 
+        #gcc make zlib1g-dev  \
+        #libffi-dev libssl-dev libbz2-dev  \
+    #&& apt-get install -y --no-install-recommends software-properties-common \
+    #&& add-apt-repository ppa:jonathonf/python-3.6 \
+    #&& apt-get update -y \
+        #python3.6 \
+# Jpype安装依赖：g++, python3-dev, python3-setuptools, gcc
+RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
-        gcc make zlib1g-dev  \
-        libffi-dev libssl-dev libbz2-dev  \
+        gcc \
         python3-dev \
-        wget
-
-# python3安装
-ENV PYTHON_V 3.6.2
-RUN  \
-    wget https://www.python.org/ftp/python/$PYTHON_V/Python-$PYTHON_V.tar.xz \
-    && tar xJf Python-$PYTHON_V.tar.xz  \
-    && cd Python-$PYTHON_V \
-    &&  sed -i 's/#SSL=/SSL=/g' Modules/Setup.dist \
-    &&  sed -i 's/#zlib/zlib/g' Modules/Setup.dist \
-    &&  echo  "_ssl _ssl.c -DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl  -L$(SSL)/lib -lssl -lcrypto " >> Modules/Setup.dist \
-    && ./configure  --enable-optimizations \
-    &&  make && make install \
-    &&  cd .. \
-    &&  rm  Python-$PYTHON_V.tar.xz -f \
-    &&  rm  -rf Python-$PYTHON_V 
-
-RUN  \
-    apt-get install -y --no-install-recommends \
+        wget \
         apt-utils \
         g++ \         
         python3-pip \
-    && apt-get upgrade -y \
+        python3-setuptools \
     && apt-get autoremove \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
+
 # Pypel安装
 # https://pypi.python.org/packages/d2/c2/cda0e4ae97037ace419704b4ebb7584ed73ef420137ff2b79c64e1682c43/JPype1-0.6.2.tar.gz
+# 可以忽略的错误：warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
 ENV PYPEL_V 0.6.2
 RUN cd ~/ \
     && wget https://pypi.python.org/packages/d2/c2/cda0e4ae97037ace419704b4ebb7584ed73ef420137ff2b79c64e1682c43/JPype1-$PYPEL_V.tar.gz \
@@ -51,24 +42,19 @@ RUN cd ~/ \
     && cd ~ \
     && rm JPype1-$PYPEL_V.tar.gz \
     && rm -r JPype1-$PYPEL_V
-#RUN cd ~/ \
-    #&& wget https://pypi.python.org/packages/59/90/149647ac2c8649a5983fcc47c78f2881af80cbd99f54248ac31b3d611618/JPype1-py3-0.5.5.2.tar.gz#md5=06481b851244abb37d45f3a03f0f0455 \
-    #&& tar -xvzf JPype1-py3-0.5.5.2.tar.gz \
-    #&& cd JPype1-py3-0.5.5.2 \
-    #&& python3 setup.py install \
-    #&& cd ~ \
-    #&& rm JPype1-py3-0.5.5.2.tar.gz \
-    #&& rm -r JPype1-py3-0.5.5.2
 
 # install ipython
+# wheel: invalid command 'bdist_wheel'
 RUN \
-    pip3 install -U pip \
+    pip3 install -U \
+        pip \
         setuptools \
-    && pip3 install ipython \
+        wheel \
+    && pip3 install -U \
+        ipython \
         numpy \
         pandas \
         scipy \
-        nltk \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && mkdir /var/www
   
