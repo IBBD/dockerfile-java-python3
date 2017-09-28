@@ -7,7 +7,6 @@ FROM openjdk:8-slim
 
 MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 
-# 安装gcc，make和zlib压缩/解压缩库,bz2依赖库
 # python3安装依赖：software-properties-common, 
         #gcc make zlib1g-dev  \
         #libffi-dev libssl-dev libbz2-dev  \
@@ -16,18 +15,21 @@ MAINTAINER Alex Cai "cyy0523xc@gmail.com"
     #&& apt-get update -y \
         #python3.6 \
 # Jpype安装依赖：g++, python3-dev, python3-setuptools, gcc
+        #apt-utils \
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
         gcc \
         python3-dev \
         wget \
-        apt-utils \
         g++ \         
         python3-pip \
-        python3-setuptools \
     && apt-get autoremove \
     && apt-get clean \
-    && rm -r /var/lib/apt/lists/*
+    && rm -r /var/lib/apt/lists/* \
+    && pip3 install -U \
+        pip \
+        setuptools \
+        wheel
 
 
 # Pypel安装
@@ -47,10 +49,6 @@ RUN cd ~/ \
 # wheel: invalid command 'bdist_wheel'
 RUN \
     pip3 install -U \
-        pip \
-        setuptools \
-        wheel \
-    && pip3 install -U \
         ipython \
         numpy \
         pandas \

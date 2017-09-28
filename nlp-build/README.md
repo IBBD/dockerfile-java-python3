@@ -1,4 +1,0 @@
-# hanlp build image
-
-
-
