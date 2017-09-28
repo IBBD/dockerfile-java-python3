@@ -14,7 +14,8 @@ RUN  apt-get update \
     && apt-get install -y --no-install-recommends \
         gcc make zlib1g-dev  \
         libffi-dev libssl-dev libbz2-dev  \
-        python3-dev  
+        python3-dev \
+        wget
 
 # python3安装
 ENV PYTHON_V 3.6.2
