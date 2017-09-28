@@ -19,11 +19,7 @@ MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
         gcc \
-        python3-dev \
-        wget \
-        g++ \         
         python3-pip \
-    && apt-get autoremove \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/* \
     && pip3 install -U \
@@ -36,20 +32,31 @@ RUN apt-get update -y \
 # https://pypi.python.org/packages/d2/c2/cda0e4ae97037ace419704b4ebb7584ed73ef420137ff2b79c64e1682c43/JPype1-0.6.2.tar.gz
 # 可以忽略的错误：warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
 ENV PYPEL_V 0.6.2
-RUN cd ~/ \
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        python3-dev \
+        wget \
+        g++ \         
+    && cd ~/ \
     && wget https://pypi.python.org/packages/d2/c2/cda0e4ae97037ace419704b4ebb7584ed73ef420137ff2b79c64e1682c43/JPype1-$PYPEL_V.tar.gz \
     && tar -xvzf JPype1-$PYPEL_V.tar.gz \
     && cd JPype1-$PYPEL_V \
     && python3 setup.py install \
     && cd ~ \
     && rm JPype1-$PYPEL_V.tar.gz \
-    && rm -r JPype1-$PYPEL_V
+    && rm -r JPype1-$PYPEL_V \
+    && apt-get remove -y \
+        python3-dev \
+        wget \
+        g++ \         
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -r /var/lib/apt/lists/*
 
 # install ipython
 # wheel: invalid command 'bdist_wheel'
 RUN \
     pip3 install -U \
-        ipython \
         numpy \
         pandas \
         scipy \

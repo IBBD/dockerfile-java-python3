@@ -8,7 +8,8 @@ FROM registry.cn-hangzhou.aliyuncs.com/ibbd/openjdk-python3
 
 RUN \
     apt-get update \
-    && apt-get install -y --no-install-recommends build-essential \
+    && apt-get install -y --no-install-recommends \
+        build-essential \
     && pip3 install -U flask \
         flask_restful \
         flask-cors \
@@ -18,7 +19,8 @@ RUN \
         jieba \
         gunicorn \
         cython \
-    && apt-get remove -y build-essential \
+    && apt-get remove -y \
+        build-essential \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
