@@ -11,13 +11,13 @@ MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 # python3安装依赖：software-properties-common, 
         #gcc make zlib1g-dev  \
         #libffi-dev libssl-dev libbz2-dev  \
+    #&& apt-get install -y --no-install-recommends software-properties-common \
+    #&& add-apt-repository ppa:jonathonf/python-3.6 \
+    #&& apt-get update -y \
+        #python3.6 \
 # Jpype安装依赖：g++, python3-dev
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends software-properties-common \
-    && add-apt-repository ppa:jonathonf/python-3.6 \
-    && apt-get update \
+RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
-        python3.6 \
         python3-dev \
         wget \
         apt-utils \
