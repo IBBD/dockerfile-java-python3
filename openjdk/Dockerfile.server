@@ -19,6 +19,6 @@ RUN \
         gunicorn \
         cython \
     && apt-get remove -y build-essential \
-    && apt-get autoremove \
+    && apt-get autoremove -y \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
