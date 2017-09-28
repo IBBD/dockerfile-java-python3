@@ -3,7 +3,8 @@
 #
 # Version 2017-04-18
 
-FROM ibbd/java-python3:openjdk
+#FROM ibbd/java-python3:openjdk
+FROM registry-internal.cn-hangzhou.aliyuncs.com/ibbd/openjdk-python3
 
 MAINTAINER Alex Cai cyy0523xc@gmail.com
 
@@ -24,4 +25,3 @@ RUN \
         jieba \
         gunicorn \
         cython
-
