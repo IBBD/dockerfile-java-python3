@@ -7,7 +7,9 @@ FROM openjdk:8-slim
 
 MAINTAINER Alex Cai "cyy0523xc@gmail.com"
 
-# Pypel安装
+# 安装列表：
+# 1. Pypel
+# 2. pip3
 # https://pypi.python.org/packages/d2/c2/cda0e4ae97037ace419704b4ebb7584ed73ef420137ff2b79c64e1682c43/JPype1-0.6.2.tar.gz
 # 可以忽略的错误：warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
 # Jpype安装依赖：g++, python3-dev, python3-setuptools, gcc
@@ -37,7 +39,6 @@ RUN apt-get update -y \
         wget \
         g++ \         
         gcc \
-        python3-pip \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
