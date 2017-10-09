@@ -41,7 +41,8 @@ RUN apt-get update -y \
         gcc \
     && apt-get autoremove -y \
     && apt-get clean \
-    && rm -r /var/lib/apt/lists/*
+    && rm -r /var/lib/apt/lists/* \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # 工作目录
 WORKDIR /var/www
