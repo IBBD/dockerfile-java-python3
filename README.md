@@ -7,6 +7,12 @@ docker pull ibbd/java-python3-server
 ```
 
 ## 升级日志
+### 20190906
+
+- 增加：fire, fireRest
+- 更加python版本到3.7
+- 使用openjdk
+
 ### 20170908
 
 - 增加：scipy

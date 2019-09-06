@@ -8,10 +8,10 @@ FROM ibbd/java-python3
 MAINTAINER Alex Cai cyy0523xc@gmail.com
 
 RUN \
-    apt-get update \
-    && apt-get install -y --no-install-recommends build-essential \
-    && apt-get autoremove \
-    && apt-get clean \
+    apt update \
+    && apt install -y --no-install-recommends build-essential \
+    && apt autoremove \
+    && apt clean \
     && rm -r /var/lib/apt/lists/*
 
 RUN \
