@@ -22,7 +22,7 @@ RUN apt update -y \
 # 安装系统包
 # 安装常用的包
 RUN pip3 install -U pip \
-    && pip3 install JPype1 setuptools ipython \
+    && pip3 install JPype1 setuptools \
     && pip3 install numpy pandas scipy jieba
 
 # 安装接口服务相关包
