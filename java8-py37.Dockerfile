@@ -14,9 +14,9 @@ RUN apt update -y \
         python3-dev \
         build-essential \
         git \
-    && apt autoremove \
-    && apt clean \
-    && rm -r /var/lib/apt/lists/* \
+    && apt autoremove -y \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/* \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # 安装系统包
