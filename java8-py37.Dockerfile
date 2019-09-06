@@ -37,7 +37,7 @@ RUN pip3 install -U flask \
     && git clone https://github.com/ibbd-dev/python-fire-rest /fire \
     && cd /fire \
     && pip3 install -r requirements.txt \
-    && python setup.py install \
+    && python3 setup.py install \
     && rm -rf /fire \
     && pip3 install fire
 
