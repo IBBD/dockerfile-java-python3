@@ -38,7 +38,6 @@ RUN pip3 install -U flask \
     && cd /fire \
     && pip3 install -r requirements.txt \
     && python3 setup.py install \
-    && rm -rf /fire \
     && pip3 install fire
 
 # 工作目录
